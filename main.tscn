@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cikf66d5ul6ra"]
 
 [ext_resource type="Script" uid="uid://qsjcasu1ndlb" path="res://scripts/Main.cs" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://scripts/TimerCicle.cs" id="2_0xm2m"]
 
 [node name="Main" type="Control" unique_id=1479774579]
 layout_mode = 3
@@ -15,15 +16,29 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Layout" type="VBoxContainer" parent="." unique_id=1718844650]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 366.0
 
 [node name="Title" type="Label" parent="Layout" unique_id=1647423381]
 layout_mode = 2
 
 [node name="TimerCircle" type="Control" parent="Layout" unique_id=929735440]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+script = ExtResource("2_0xm2m")
+
+[node name="TimeLabel" type="Label" parent="Layout/TimerCircle" unique_id=475805870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "25:00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Controls" type="HBoxContainer" parent="Layout" unique_id=1283253729]
 layout_mode = 2
@@ -59,5 +74,8 @@ focus_neighbor_top = NodePath("../DecreaseButton")
 focus_neighbor_right = NodePath("../StartPauseButton")
 focus_neighbor_bottom = NodePath("../DecreaseButton")
 text = "RESET"
+
+[node name="CenterContainer" type="CenterContainer" parent="Layout" unique_id=1609941583]
+layout_mode = 2
 
 [node name="EndSound" type="AudioStreamPlayer" parent="." unique_id=1591177889]
