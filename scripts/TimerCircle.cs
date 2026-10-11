@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class TimerCicle : Control
+public partial class TimerCircle : Control
 {
     // Progression : 1 = full circle, 0 = empty circle
     private float _progress = 1.0f;

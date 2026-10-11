@@ -8,12 +8,12 @@ public partial class Main : Control
 
     private bool _isRunning = false;
 
-    private TimerCicle _timerCircle;
+    private TimerCircle _timerCircle;
     private Button _startPauseButton;
 
     public override void _Ready()
     {
-        _timerCircle = GetNode<TimerCicle>("Layout/TimerCicle");
+        _timerCircle = GetNode<TimerCircle>("Layout/TimerCircle");
         _startPauseButton = GetNode<Button>("Layout/Controls/StartPauseButton");
 
         Button decreaseButton = GetNode<Button>("Layout/Controls/DecreaseButton");
@@ -105,12 +105,12 @@ public partial class Main : Control
 
     private void UpdateDisplay()
     {
-		int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
+        int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
 
-		_timerCircle.SetTime(displayedSeconds);
+        _timerCircle.SetTime(displayedSeconds);
 
-		float progress = (float)(_remainingSeconds / _durationSeconds);
+        float progress = (float)(_remainingSeconds / _durationSeconds);
 
-		_timerCircle.SetProgress(progress);
+        _timerCircle.SetProgress(progress);
     }
 }

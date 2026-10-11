@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cikf66d5ul6ra"]
 
 [ext_resource type="Script" uid="uid://qsjcasu1ndlb" path="res://scripts/Main.cs" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://scripts/TimerCicle.cs" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://scripts/TimerCircle.cs" id="2_0xm2m"]
 
 [node name="Main" type="Control" unique_id=1479774579]
 layout_mode = 3
