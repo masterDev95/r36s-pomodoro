@@ -75,7 +75,4 @@ focus_neighbor_right = NodePath("../StartPauseButton")
 focus_neighbor_bottom = NodePath("../DecreaseButton")
 text = "RESET"
 
-[node name="CenterContainer" type="CenterContainer" parent="Layout" unique_id=1609941583]
-layout_mode = 2
-
 [node name="EndSound" type="AudioStreamPlayer" parent="." unique_id=1591177889]
