@@ -32,7 +32,7 @@ public partial class TimerCircle : Control
 			-Mathf.Pi / 2.0f,
 			3.0f * Mathf.Pi / 2.0f,
 			96,
-			new Color(.18f, .20f, .25f),
+			new Color("#272829"),
 			thickness,
 			true
 		);
@@ -48,7 +48,7 @@ public partial class TimerCircle : Control
 				-Mathf.Pi / 2.0f,
 				endAngle,
 				96,
-				new Color(.20f, .85f, .75f),
+				new Color("#283c59"),
 				thickness,
 				true
 			);
