@@ -68,6 +68,6 @@ public partial class TimerCircle : Control
 		int minutes = totalSeconds / 60;
 		int seconds = totalSeconds % 60;
 
-		_timeLabel.Text = $"{minutes:00}:{seconds:00}";
+		_timeLabel.Text = $"{minutes:00}   :   {seconds:00}";
 	}
 }
