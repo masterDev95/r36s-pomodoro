@@ -23,7 +23,7 @@ public partial class TimerCircle : Control
 		float radius = Mathf.Min(Size.X, Size.Y) / 2.0f - 12.0f;
 
 		// Circle thickness
-		float thickness = 14.0f;
+		float thickness = 20.0f;
 
 		// Draw the background circle
 		DrawArc(
