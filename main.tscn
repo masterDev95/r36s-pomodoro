@@ -44,37 +44,29 @@ vertical_alignment = 1
 [node name="Controls" type="HBoxContainer" parent="Layout" unique_id=1283253729]
 layout_mode = 2
 
-[node name="DecreaseButton" type="Button" parent="Layout/Controls" unique_id=1592741889]
-layout_mode = 2
-focus_neighbor_left = NodePath("../IncreaseButton")
-focus_neighbor_top = NodePath("../ResetButton")
-focus_neighbor_right = NodePath("../IncreaseButton")
-focus_neighbor_bottom = NodePath("../ResetButton")
-text = "-5 MIN"
-
 [node name="StartPauseButton" type="Button" parent="Layout/Controls" unique_id=420747607]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ResetButton")
-focus_neighbor_top = NodePath("../IncreaseButton")
+focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_right = NodePath("../ResetButton")
-focus_neighbor_bottom = NodePath("../IncreaseButton")
 text = "START"
-
-[node name="IncreaseButton" type="Button" parent="Layout/Controls" unique_id=935373121]
-layout_mode = 2
-focus_neighbor_left = NodePath("../DecreaseButton")
-focus_neighbor_top = NodePath("../StartPauseButton")
-focus_neighbor_right = NodePath("../DecreaseButton")
-focus_neighbor_bottom = NodePath("../StartPauseButton")
-text = "+5 MIN"
 
 [node name="ResetButton" type="Button" parent="Layout/Controls" unique_id=1569019555]
 layout_mode = 2
 focus_neighbor_left = NodePath("../StartPauseButton")
-focus_neighbor_top = NodePath("../DecreaseButton")
-focus_neighbor_right = NodePath("../StartPauseButton")
-focus_neighbor_bottom = NodePath("../DecreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
 text = "RESET"
+
+[node name="DecreaseButton" type="Button" parent="Layout/Controls" unique_id=1592741889]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ResetButton")
+focus_neighbor_right = NodePath("../IncreaseButton")
+text = "-5 MIN"
+
+[node name="IncreaseButton" type="Button" parent="Layout/Controls" unique_id=935373121]
+layout_mode = 2
+focus_neighbor_left = NodePath("../DecreaseButton")
+focus_neighbor_right = NodePath("../StartPauseButton")
+text = "+5 MIN"
 
 [node name="EndSound" type="AudioStreamPlayer" parent="." unique_id=1591177889]
 stream = ExtResource("3_h2yge")
