@@ -57,6 +57,21 @@ public partial class Main : Control
 		UpdateDisplay();
 	}
 
+	public override void _UnhandledInput(InputEvent e)
+	{
+		if (Input.IsActionJustPressed("timer_increase"))
+		{
+			OnIncreaseButtonPressed();
+			GetViewport().SetInputAsHandled();
+		}
+		
+		if (Input.IsActionJustPressed("timer_decrease"))
+		{
+			OnDecreaseButtonPressed();
+			GetViewport().SetInputAsHandled();
+		}
+	}
+
 	private void OnStartPauseButtonPressed()
 	{
 		if (_isRunning)
