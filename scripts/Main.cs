@@ -3,7 +3,7 @@ using System;
 
 public partial class Main : Control
 {
-	private int _durationSeconds = 25 * 60;
+	private int _durationSeconds = 10;
 	private double _remainingSeconds;
 
 	private bool _isRunning = false;
