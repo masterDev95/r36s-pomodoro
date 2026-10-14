@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Main : Control
 {
@@ -121,8 +120,8 @@ public partial class Main : Control
 
 	private void ChangeDuration(int changeSeconds)
 	{
-		// Clamp the duration to be between 10 seconds and 1 hour (3600 seconds)
-		_durationSeconds = Mathf.Clamp(_durationSeconds + changeSeconds, 10, 3600);
+		// Min duration is 10 seconds
+		_durationSeconds = Mathf.Min(_durationSeconds + changeSeconds, 10);
 
 		// The changing of the duration resets the timer
 		ResetTimer();
