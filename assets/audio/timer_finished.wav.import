@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dgph6aqspbf4q"
-path="res://.godot/imported/timer_finished.wav-459b7dca2adddd9abe171949f7767bef.sample"
+path="res://.godot/imported/timer_finished.wav-37a495184da6758a24361710b6beda97.sample"
 
 [deps]
 
-source_file="res://audio/timer_finished.wav"
-dest_files=["res://.godot/imported/timer_finished.wav-459b7dca2adddd9abe171949f7767bef.sample"]
+source_file="res://assets/audio/timer_finished.wav"
+dest_files=["res://.godot/imported/timer_finished.wav-37a495184da6758a24361710b6beda97.sample"]
 
 [params]
 

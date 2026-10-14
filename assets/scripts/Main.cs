@@ -16,11 +16,15 @@ public partial class Main : Control
 
 	private TimerCircle _timerCircle;
 	private AudioStreamPlayer _endSound;
+	private TextureRect _playPauseIcon;
 
 	public override void _Ready()
 	{
 		_timerCircle = GetNode<TimerCircle>("Layout/TimerCircle");
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
+		_playPauseIcon = GetNode<TextureRect>("Layout/PlayPauseContainer/PlayPauseIcon");
+
+		_remainingSeconds = _durationSeconds;
 
 		ResetTimer();
 	}
@@ -32,6 +36,26 @@ public partial class Main : Control
 		UpdateTimer(delta);
 	}
 
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsEcho())
+			return;
+
+		if (@event.IsActionPressed("timer_toggle"))
+		{
+			GD.Print("Toggling timer");
+			SetRunningState(!_isRunning);
+			GetViewport().SetInputAsHandled();
+		}
+		
+		if (!_isRunning && @event.IsActionPressed("timer_reset"))
+		{
+			GD.Print("Resetting timer");
+			ResetTimer();
+			GetViewport().SetInputAsHandled();
+		}
+	}
+
 	private void UpdateCooldowns(double delta)
 	{
 		_timerActionButtonCooldownMs = Mathf.Max(0.0, _timerActionButtonCooldownMs - delta * 1000.0);
@@ -40,19 +64,9 @@ public partial class Main : Control
 
 	private void HandleDurationInputs()
 	{
-		if (Input.IsActionJustPressed("timer_toggle") && _remainingSeconds > 0.0)
-		{
-			_isRunning = !_isRunning;
-		}
-
 		// Only allow duration adjustments when the timer is not running
 		if (_isRunning)
 			return;
-
-		if (Input.IsActionJustPressed("timer_reset"))
-		{
-			ResetTimer();
-		}
 
 		if (_timerActionButtonCooldownMs <= 0.0)
 		{
@@ -85,6 +99,16 @@ public partial class Main : Control
 		}
 	}
 
+	private void SetRunningState(bool isRunning)
+	{
+		_isRunning = isRunning;
+		
+		if (!_isRunning)
+			_playPauseIcon.Texture = GD.Load<Texture2D>("res://assets/icons/play.svg");
+		else
+			_playPauseIcon.Texture = GD.Load<Texture2D>("res://assets/icons/pause.svg");
+	}
+
 	private void UpdateTimer(double delta)
 	{
 		if (!_isRunning)
@@ -95,7 +119,8 @@ public partial class Main : Control
 		if (_remainingSeconds <= 0.0)
 		{
 			_remainingSeconds = 0.0;
-			_isRunning = false;
+			_durationSeconds = 0;
+			SetRunningState(false);
 			if (_endSound.Stream != null)
 				_endSound.Play();
 		}
@@ -105,13 +130,16 @@ public partial class Main : Control
 
 	private void AdjustDuration(int changeSeconds)
 	{
-		_durationSeconds = Mathf.Max(_durationSeconds + changeSeconds, 0);
+		_durationSeconds = (int)Mathf.Max(_remainingSeconds + changeSeconds, 0);
+
+		// Round the duration to the nearest multiple of DurationAdjustmentSeconds
+		_durationSeconds = (int)(Mathf.Round(_durationSeconds / (float)DurationAdjustmentSeconds) * DurationAdjustmentSeconds);
+
 		ResetTimer();
 	}
 
 	private void ResetTimer()
 	{
-		_isRunning = false;
 		_remainingSeconds = _durationSeconds;
 		UpdateDisplay();
 	}
