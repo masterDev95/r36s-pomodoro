@@ -2,10 +2,12 @@ using Godot;
 
 public partial class Main : Control
 {
+	private const int DefaultDurationSeconds = 0;
+	private const int DurationAdjustmentSeconds = 5;
 	private const double TimerActionButtonCooldownMs = 150.0;
 	private const double TurboTimerButtonCooldownMs = 50.0;
 
-	private int _durationSeconds = 10;
+	private int _durationSeconds = DefaultDurationSeconds;
 	private double _remainingSeconds;
 	private double _timerActionButtonCooldownMs = 0;
 	private double _turboTimerButtonCooldownMs = 0;
@@ -20,48 +22,71 @@ public partial class Main : Control
 		_timerCircle = GetNode<TimerCircle>("Layout/TimerCircle");
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
 
-		_remainingSeconds = _durationSeconds;
-
-		UpdateDisplay();
+		ResetTimer();
 	}
 
 	public override void _Process(double delta)
 	{
-		// Handle the cooldown for the action buttons (increase/decrease)
-		if (_timerActionButtonCooldownMs > 0.0)
+		UpdateCooldowns(delta);
+		HandleDurationInputs();
+		UpdateTimer(delta);
+	}
+
+	private void UpdateCooldowns(double delta)
+	{
+		_timerActionButtonCooldownMs = Mathf.Max(0.0, _timerActionButtonCooldownMs - delta * 1000.0);
+		_turboTimerButtonCooldownMs = Mathf.Max(0.0, _turboTimerButtonCooldownMs - delta * 1000.0);
+	}
+
+	private void HandleDurationInputs()
+	{
+		if (Input.IsActionJustPressed("timer_toggle") && _remainingSeconds > 0.0)
 		{
-			_timerActionButtonCooldownMs -= delta * 1000;
-			if (_timerActionButtonCooldownMs < 0.0)
-				_timerActionButtonCooldownMs = 0.0;
+			_isRunning = !_isRunning;
 		}
-		else
+
+		// Only allow duration adjustments when the timer is not running
+		if (_isRunning)
+			return;
+
+		if (Input.IsActionJustPressed("timer_reset"))
+		{
+			ResetTimer();
+		}
+
+		if (_timerActionButtonCooldownMs <= 0.0)
 		{
 			if (Input.IsActionPressed("timer_increase"))
 			{
-				ChangeDuration(5);
+				AdjustDuration(DurationAdjustmentSeconds);
 				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
 			}
-			
+
 			if (Input.IsActionPressed("timer_decrease"))
 			{
-				ChangeDuration(-5);
+				AdjustDuration(-DurationAdjustmentSeconds);
 				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
 			}
 		}
-		
-		if (Input.IsActionPressed("turbo_increase"))
-		{
-			ChangeDuration(5);
-			_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
-		}
 
-		if (Input.IsActionPressed("turbo_decrease"))
+		if (_turboTimerButtonCooldownMs <= 0.0)
 		{
-			ChangeDuration(-5);
-			_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
-		}
+			if (Input.IsActionPressed("turbo_increase"))
+			{
+				AdjustDuration(DurationAdjustmentSeconds);
+				_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
+			}
 
-		// Update the timer if it's running
+			if (Input.IsActionPressed("turbo_decrease"))
+			{
+				AdjustDuration(-DurationAdjustmentSeconds);
+				_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
+			}
+		}
+	}
+
+	private void UpdateTimer(double delta)
+	{
 		if (!_isRunning)
 			return;
 
@@ -78,11 +103,9 @@ public partial class Main : Control
 		UpdateDisplay();
 	}
 
-	private void ChangeDuration(int changeSeconds)
+	private void AdjustDuration(int changeSeconds)
 	{
 		_durationSeconds = Mathf.Max(_durationSeconds + changeSeconds, 0);
-
-		// The changing of the duration resets the timer
 		ResetTimer();
 	}
 
@@ -95,10 +118,11 @@ public partial class Main : Control
 
 	private void UpdateDisplay()
 	{
-		float progress = (float)(_remainingSeconds / _durationSeconds);
+		float progress = _durationSeconds > 0 ? (float)(_remainingSeconds / _durationSeconds) : 0.0f;
 		int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
 
 		_timerCircle.SetProgress(progress);
 		_timerCircle.SetTime(displayedSeconds);
 	}
+
 }
