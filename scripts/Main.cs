@@ -3,8 +3,11 @@ using System;
 
 public partial class Main : Control
 {
+	private const double TimerActionButtonCooldownMs = 150.0;
+
 	private int _durationSeconds = 10;
 	private double _remainingSeconds;
+	private double _timerActionButtonCooldownMs = 0;
 
 	private bool _isRunning = false;
 
@@ -36,6 +39,27 @@ public partial class Main : Control
 
 	public override void _Process(double delta)
 	{
+		if (_timerActionButtonCooldownMs > 0.0)
+		{
+			_timerActionButtonCooldownMs -= delta * 1000;
+			if (_timerActionButtonCooldownMs < 0.0)
+				_timerActionButtonCooldownMs = 0.0;
+		}
+		else
+		{
+			if (Input.IsActionPressed("timer_increase"))
+			{
+				ChangeDuration(5);
+				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
+			}
+			
+			if (Input.IsActionPressed("timer_decrease"))
+			{
+				ChangeDuration(-5);
+				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
+			}
+		}
+
 		if (!_isRunning)
 			return;
 
@@ -59,15 +83,6 @@ public partial class Main : Control
 
 	public override void _UnhandledInput(InputEvent e)
 	{
-		if (Input.IsActionPressed("timer_increase"))
-		{
-			ChangeDuration(5);
-		}
-		
-		if (Input.IsActionPressed("timer_decrease"))
-		{
-			ChangeDuration(-5);
-		}
 	}
 
 	private void OnStartPauseButtonPressed()
