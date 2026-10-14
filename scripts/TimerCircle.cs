@@ -11,9 +11,6 @@ public partial class TimerCircle : Control
 	public override void _Ready()
 	{
 		_timeLabel = GetNode<Label>("TimeLabel");
-
-		SetTime(25 * 60);
-		QueueRedraw();
 	}
 
 	public override void _Draw()
@@ -41,6 +38,19 @@ public partial class TimerCircle : Control
 		if (_progress > 0.0f)
 		{
 			float endAngle = -Mathf.Pi / 2.0f + Mathf.Tau * _progress;
+
+			Vector2 startPoint = center + new Vector2(
+				Mathf.Cos(-Mathf.Pi / 2.0f),
+				Mathf.Sin(-Mathf.Pi / 2.0f)
+			) * radius;
+
+			Vector2 endPoint = center + new Vector2(
+				Mathf.Cos(endAngle),
+				Mathf.Sin(endAngle)
+			) * radius;
+
+			DrawCircle(startPoint, thickness / 2.0f, new Color("#283c59"));
+			DrawCircle(endPoint, thickness / 2.0f, new Color("#283c59"));
 
 			DrawArc(
 				center,
