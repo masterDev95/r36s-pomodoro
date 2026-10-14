@@ -59,16 +59,14 @@ public partial class Main : Control
 
 	public override void _UnhandledInput(InputEvent e)
 	{
-		if (Input.IsActionJustPressed("timer_increase"))
+		if (Input.IsActionPressed("timer_increase"))
 		{
-			OnIncreaseButtonPressed();
-			GetViewport().SetInputAsHandled();
+			ChangeDuration(5);
 		}
 		
-		if (Input.IsActionJustPressed("timer_decrease"))
+		if (Input.IsActionPressed("timer_decrease"))
 		{
-			OnDecreaseButtonPressed();
-			GetViewport().SetInputAsHandled();
+			ChangeDuration(-5);
 		}
 	}
 
@@ -108,8 +106,8 @@ public partial class Main : Control
 
 	private void ChangeDuration(int changeSeconds)
 	{
-		// 120 minutes max
-		_durationSeconds = Mathf.Clamp(_durationSeconds + changeSeconds, 60, 120 * 60);
+		// Clamp the duration to be between 10 seconds and 1 hour (3600 seconds)
+		_durationSeconds = Mathf.Clamp(_durationSeconds + changeSeconds, 10, 3600);
 
 		// The changing of the duration resets the timer
 		ResetTimer();
