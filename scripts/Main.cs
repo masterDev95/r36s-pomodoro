@@ -3,10 +3,12 @@ using Godot;
 public partial class Main : Control
 {
 	private const double TimerActionButtonCooldownMs = 150.0;
+	private const double TurboTimerButtonCooldownMs = 50.0;
 
 	private int _durationSeconds = 10;
 	private double _remainingSeconds;
 	private double _timerActionButtonCooldownMs = 0;
+	private double _turboTimerButtonCooldownMs = 0;
 
 	private bool _isRunning = false;
 
@@ -46,6 +48,18 @@ public partial class Main : Control
 				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
 			}
 		}
+		
+		if (Input.IsActionPressed("turbo_increase"))
+		{
+			ChangeDuration(5);
+			_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
+		}
+
+		if (Input.IsActionPressed("turbo_decrease"))
+		{
+			ChangeDuration(-5);
+			_turboTimerButtonCooldownMs = TurboTimerButtonCooldownMs;
+		}
 
 		// Update the timer if it's running
 		if (!_isRunning)
@@ -66,8 +80,7 @@ public partial class Main : Control
 
 	private void ChangeDuration(int changeSeconds)
 	{
-		// Min duration is 10 seconds
-		_durationSeconds = Mathf.Min(_durationSeconds + changeSeconds, 10);
+		_durationSeconds = Mathf.Max(_durationSeconds + changeSeconds, 0);
 
 		// The changing of the duration resets the timer
 		ResetTimer();
