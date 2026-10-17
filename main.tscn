@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://qsjcasu1ndlb" path="res://assets/scripts/Main.cs" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://assets/scripts/TimerCircle.cs" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://dgph6aqspbf4q" path="res://assets/audio/timer_finished.wav" id="3_h2yge"]
+[ext_resource type="Theme" uid="uid://b4gpqtmy5roq2" path="res://assets/theme/text/WheelHeaderTheme.tres" id="3_kek77"]
+[ext_resource type="Theme" uid="uid://cm5ox11ic4cl3" path="res://assets/theme/text/TimeSecondaryTheme.tres" id="4_4c57u"]
 [ext_resource type="StyleBox" uid="uid://c7or01rqxb0pd" path="res://assets/theme/buttons/ButtonNormal.tres" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dw30texidlaug" path="res://assets/icons/play.svg" id="4_lquwl"]
+[ext_resource type="Theme" uid="uid://taq6xusrmda4" path="res://assets/theme/text/TimeTheme.tres" id="5_efxa6"]
 
 [node name="Main" type="Control" unique_id=1479774579]
 texture_filter = 1
@@ -16,43 +19,149 @@ offset_bottom = 480.0
 theme = ExtResource("1_1bvp3")
 script = ExtResource("1_ig7tw")
 
-[node name="Layout" type="VBoxContainer" parent="." unique_id=1718844650]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -142.0
-offset_right = 142.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 32
-alignment = 1
-
-[node name="TimerCircle" type="Control" parent="Layout" unique_id=929735440]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-script = ExtResource("2_0xm2m")
-
-[node name="TimeLabel" type="Label" parent="Layout/TimerCircle" unique_id=475805870]
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=787668297]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 40
+alignment = 1
+
+[node name="WheelsContainer" type="HBoxContainer" parent="MainLayout" unique_id=925197628]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer" unique_id=952780631]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HourWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=1084165941]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=28338233]
+layout_mode = 2
+theme = ExtResource("3_kek77")
+text = "Heures"
+
+[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=164597552]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "99"
+horizontal_alignment = 1
+
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=953573474]
+layout_mode = 2
+theme = ExtResource("5_efxa6")
+text = "00"
+horizontal_alignment = 1
+
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=763727977]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "01"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer" unique_id=278059493]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MinuteWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=139727600]
+layout_mode = 2
+alignment = 1
+
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=830440832]
+layout_mode = 2
+theme = ExtResource("3_kek77")
+text = "Min"
+
+[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=33362615]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "29"
+horizontal_alignment = 1
+
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=1112297590]
+layout_mode = 2
+theme = ExtResource("5_efxa6")
+text = "30"
+horizontal_alignment = 1
+
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=447337497]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "31"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="MainLayout/WheelsContainer" unique_id=1513136000]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SecondWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=740668704]
+layout_mode = 2
+alignment = 1
+
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1764793202]
+layout_mode = 2
+theme = ExtResource("3_kek77")
+text = "Heures"
+
+[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1553433472]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "59"
+horizontal_alignment = 1
+
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1727609416]
+layout_mode = 2
+theme = ExtResource("5_efxa6")
+text = "00"
+horizontal_alignment = 1
+
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=251654704]
+layout_mode = 2
+theme = ExtResource("4_4c57u")
+text = "01"
+horizontal_alignment = 1
+
+[node name="Spacer4" type="Control" parent="MainLayout/WheelsContainer" unique_id=787765960]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimerLayout" type="VBoxContainer" parent="MainLayout" unique_id=1718844650]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TimerCircle" type="Control" parent="MainLayout/TimerLayout" unique_id=929735440]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+script = ExtResource("2_0xm2m")
+
+[node name="TimeLabel" type="Label" parent="MainLayout/TimerLayout/TimerCircle" unique_id=475805870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_efxa6")
 text = "99   :   59"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayPauseContainer" type="PanelContainer" parent="Layout" unique_id=559880082]
+[node name="PlayPauseContainer" type="PanelContainer" parent="MainLayout/TimerLayout" unique_id=559880082]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("4_7mycd")
 
-[node name="PlayPauseIcon" type="TextureRect" parent="Layout/PlayPauseContainer" unique_id=1968915632]
+[node name="PlayPauseIcon" type="TextureRect" parent="MainLayout/TimerLayout/PlayPauseContainer" unique_id=1968915632]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 4
