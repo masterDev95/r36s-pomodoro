@@ -1,4 +1,5 @@
 using Godot;
+using static WheelsContainer;
 
 public partial class Main : Control
 {
@@ -17,11 +18,13 @@ public partial class Main : Control
 	private TimerCircle _timerCircle;
 	private AudioStreamPlayer _endSound;
 	private TextureRect _playPauseIcon;
+	private WheelsContainer _wheelsController;
 
 	public override void _Ready()
 	{
 		_timerCircle = GetNode<TimerCircle>("MainLayout/TimerLayout/TimerCircle");
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
+		_wheelsController = GetNode<WheelsContainer>("MainLayout/WheelsContainer");
 		_playPauseIcon = GetNode<TextureRect>("MainLayout/TimerLayout/PlayPauseContainer/PlayPauseIcon");
 
 		_remainingSeconds = _durationSeconds;
@@ -43,15 +46,66 @@ public partial class Main : Control
 
 		if (@event.IsActionPressed("timer_toggle"))
 		{
-			GD.Print("Toggling timer");
 			SetRunningState(!_isRunning);
 			GetViewport().SetInputAsHandled();
 		}
 		
 		if (!_isRunning && @event.IsActionPressed("timer_reset"))
 		{
-			GD.Print("Resetting timer");
 			ResetTimer();
+			GetViewport().SetInputAsHandled();
+		}
+
+		if (@event.IsActionPressed("ui_left"))
+		{
+			_wheelsController.SetActiveWheel(Wheel.Minute);
+			GetViewport().SetInputAsHandled();
+		}
+
+		if (@event.IsActionPressed("ui_right"))
+		{
+			_wheelsController.SetActiveWheel(Wheel.Second);
+			GetViewport().SetInputAsHandled();
+		}
+
+		// Wheels logic with loop
+		if (@event.IsActionPressed("ui_up"))
+		{
+			if (_wheelsController.ActiveWheel == Wheel.Minute)
+			{
+				if (_durationSeconds < 59 * 60)
+					AdjustDuration(60);
+				else
+					AdjustDuration(-59 * 60);
+			}
+			else
+			{
+				if (_durationSeconds % 60 < 60 - DurationAdjustmentSeconds)
+					AdjustDuration(DurationAdjustmentSeconds);
+				else
+					AdjustDuration(-(60 - DurationAdjustmentSeconds));
+			}
+
+			GetViewport().SetInputAsHandled();
+		}
+
+		if (@event.IsActionPressed("ui_down"))
+		{
+			if (_wheelsController.ActiveWheel == Wheel.Minute)
+			{
+				if (_durationSeconds >= 60)
+					AdjustDuration(-60);
+				else		
+					AdjustDuration(59 * 60);
+			}
+			else
+			{
+				if (_durationSeconds % 60 / DurationAdjustmentSeconds >= 1)
+					AdjustDuration(-DurationAdjustmentSeconds);
+				else
+					AdjustDuration(60 - DurationAdjustmentSeconds);
+			}
+
 			GetViewport().SetInputAsHandled();
 		}
 	}
@@ -151,6 +205,7 @@ public partial class Main : Control
 
 		_timerCircle.SetProgress(progress);
 		_timerCircle.SetTime(displayedSeconds);
+		_wheelsController.UpdateWheels((int)Mathf.Floor(_durationSeconds / 60), (int)(_durationSeconds % 60));
 	}
 
 }
