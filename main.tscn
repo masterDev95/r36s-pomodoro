@@ -136,7 +136,8 @@ texture = ExtResource("6_efxa6")
 [node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1764793202]
 layout_mode = 2
 theme = ExtResource("3_kek77")
-text = "Heures"
+text = "Sec"
+horizontal_alignment = 1
 
 [node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1553433472]
 layout_mode = 2
