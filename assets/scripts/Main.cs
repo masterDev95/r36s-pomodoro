@@ -155,6 +155,9 @@ public partial class Main : Control
 
 	private void SetRunningState(bool isRunning)
 	{
+		if (!_isRunning && _durationSeconds <= 0)
+			return;
+
 		_isRunning = isRunning;
 		
 		if (!_isRunning)
