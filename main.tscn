@@ -9,6 +9,8 @@
 [ext_resource type="StyleBox" uid="uid://c7or01rqxb0pd" path="res://assets/theme/buttons/ButtonNormal.tres" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dw30texidlaug" path="res://assets/icons/play.svg" id="4_lquwl"]
 [ext_resource type="Theme" uid="uid://taq6xusrmda4" path="res://assets/theme/text/TimeTheme.tres" id="5_efxa6"]
+[ext_resource type="Texture2D" uid="uid://kwnvd7a45jj1" path="res://assets/icons/ChevronDown.svg" id="6_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dee6hvcuju47f" path="res://assets/icons/ChevronUp.svg" id="6_efxa6"]
 
 [node name="Main" type="Control" unique_id=1479774579]
 texture_filter = 1
@@ -72,12 +74,18 @@ size_flags_horizontal = 3
 
 [node name="MinuteWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=139727600]
 layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 1
+
+[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=2043690901]
+layout_mode = 2
+texture = ExtResource("6_efxa6")
 
 [node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=830440832]
 layout_mode = 2
 theme = ExtResource("3_kek77")
 text = "Min"
+horizontal_alignment = 1
 
 [node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=33362615]
 layout_mode = 2
@@ -85,11 +93,17 @@ theme = ExtResource("4_4c57u")
 text = "29"
 horizontal_alignment = 1
 
+[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=746797711]
+layout_mode = 2
+
 [node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=1112297590]
 layout_mode = 2
 theme = ExtResource("5_efxa6")
 text = "30"
 horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=2117404774]
+layout_mode = 2
 
 [node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=447337497]
 layout_mode = 2
@@ -97,13 +111,22 @@ theme = ExtResource("4_4c57u")
 text = "31"
 horizontal_alignment = 1
 
+[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=296289223]
+layout_mode = 2
+texture = ExtResource("6_4c57u")
+
 [node name="Spacer3" type="Control" parent="MainLayout/WheelsContainer" unique_id=1513136000]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="SecondWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=740668704]
 layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 1
+
+[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1961907374]
+layout_mode = 2
+texture = ExtResource("6_efxa6")
 
 [node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1764793202]
 layout_mode = 2
@@ -116,17 +139,27 @@ theme = ExtResource("4_4c57u")
 text = "59"
 horizontal_alignment = 1
 
+[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=772254977]
+layout_mode = 2
+
 [node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1727609416]
 layout_mode = 2
 theme = ExtResource("5_efxa6")
 text = "00"
 horizontal_alignment = 1
 
+[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1719370854]
+layout_mode = 2
+
 [node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=251654704]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "01"
 horizontal_alignment = 1
+
+[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1352163068]
+layout_mode = 2
+texture = ExtResource("6_4c57u")
 
 [node name="Spacer4" type="Control" parent="MainLayout/WheelsContainer" unique_id=787765960]
 layout_mode = 2
