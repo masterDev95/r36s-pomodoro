@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://dd74tdvwmbvjv" path="res://assets/theme/PomodoroTheme.tres" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://qsjcasu1ndlb" path="res://assets/scripts/Main.cs" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://assets/scripts/TimerCircle.cs" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://y43tkqvoptcd" path="res://assets/scripts/WheelsContainer.cs" id="3_dg77c"]
 [ext_resource type="AudioStream" uid="uid://dgph6aqspbf4q" path="res://assets/audio/timer_finished.wav" id="3_h2yge"]
 [ext_resource type="Theme" uid="uid://b4gpqtmy5roq2" path="res://assets/theme/text/WheelHeaderTheme.tres" id="3_kek77"]
 [ext_resource type="Theme" uid="uid://cm5ox11ic4cl3" path="res://assets/theme/text/TimeSecondaryTheme.tres" id="4_4c57u"]
@@ -34,6 +35,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+script = ExtResource("3_dg77c")
 
 [node name="Spacer" type="Control" parent="MainLayout/WheelsContainer" unique_id=952780631]
 visible = false
