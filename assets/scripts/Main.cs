@@ -20,9 +20,9 @@ public partial class Main : Control
 
 	public override void _Ready()
 	{
-		_timerCircle = GetNode<TimerCircle>("Layout/TimerCircle");
+		_timerCircle = GetNode<TimerCircle>("MainLayout/TimerLayout/TimerCircle");
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
-		_playPauseIcon = GetNode<TextureRect>("Layout/PlayPauseContainer/PlayPauseIcon");
+		_playPauseIcon = GetNode<TextureRect>("MainLayout/TimerLayout/PlayPauseContainer/PlayPauseIcon");
 
 		_remainingSeconds = _durationSeconds;
 
