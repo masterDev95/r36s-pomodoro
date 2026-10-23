@@ -67,47 +67,6 @@ public partial class Main : Control
 			_wheelsController.SetActiveWheel(Wheel.Second);
 			GetViewport().SetInputAsHandled();
 		}
-
-		// Wheels logic with loop
-		if (@event.IsActionPressed("ui_up"))
-		{
-			if (_wheelsController.ActiveWheel == Wheel.Minute)
-			{
-				if (_durationSeconds < 59 * 60)
-					AdjustDuration(60);
-				else
-					AdjustDuration(-59 * 60);
-			}
-			else
-			{
-				if (_durationSeconds % 60 < 60 - DurationAdjustmentSeconds)
-					AdjustDuration(DurationAdjustmentSeconds);
-				else
-					AdjustDuration(-(60 - DurationAdjustmentSeconds));
-			}
-
-			GetViewport().SetInputAsHandled();
-		}
-
-		if (@event.IsActionPressed("ui_down"))
-		{
-			if (_wheelsController.ActiveWheel == Wheel.Minute)
-			{
-				if (_durationSeconds >= 60)
-					AdjustDuration(-60);
-				else		
-					AdjustDuration(59 * 60);
-			}
-			else
-			{
-				if (_durationSeconds % 60 / DurationAdjustmentSeconds >= 1)
-					AdjustDuration(-DurationAdjustmentSeconds);
-				else
-					AdjustDuration(60 - DurationAdjustmentSeconds);
-			}
-
-			GetViewport().SetInputAsHandled();
-		}
 	}
 
 	private void UpdateCooldowns(double delta)
@@ -133,6 +92,46 @@ public partial class Main : Control
 			if (Input.IsActionPressed("timer_decrease"))
 			{
 				AdjustDuration(-DurationAdjustmentSeconds);
+				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
+			}
+
+			if (Input.IsActionPressed("ui_up"))
+			{
+				if (_wheelsController.ActiveWheel == Wheel.Minute)
+				{
+					if (_durationSeconds < 59 * 60)
+						AdjustDuration(60);
+					else
+						AdjustDuration(-59 * 60);
+				}
+				else
+				{
+					if (_durationSeconds % 60 < 60 - DurationAdjustmentSeconds)
+						AdjustDuration(DurationAdjustmentSeconds);
+					else
+						AdjustDuration(-(60 - DurationAdjustmentSeconds));
+				}
+
+				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
+			}
+
+			if (Input.IsActionPressed("ui_down"))
+			{
+				if (_wheelsController.ActiveWheel == Wheel.Minute)
+				{
+					if (_durationSeconds >= 60)
+						AdjustDuration(-60);
+					else		
+						AdjustDuration(59 * 60);
+				}
+				else
+				{
+					if (_durationSeconds % 60 / DurationAdjustmentSeconds >= 1)
+						AdjustDuration(-DurationAdjustmentSeconds);
+					else
+						AdjustDuration(60 - DurationAdjustmentSeconds);
+				}
+
 				_timerActionButtonCooldownMs = TimerActionButtonCooldownMs;
 			}
 		}
