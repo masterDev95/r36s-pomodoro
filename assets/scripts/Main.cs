@@ -14,6 +14,7 @@ public partial class Main : Control
 	private double _turboTimerButtonCooldownMs = 0;
 
 	private bool _isRunning = false;
+	private bool _isStopped = true;
 
 	private TimerCircle _timerCircle;
 	private AudioStreamPlayer _endSound;
@@ -44,8 +45,9 @@ public partial class Main : Control
 		if (@event.IsEcho())
 			return;
 
-		if (@event.IsActionPressed("timer_toggle"))
+		if (@event.IsActionPressed("timer_toggle") && _durationSeconds > 0)
 		{
+			_isStopped = false;
 			SetRunningState(!_isRunning);
 			GetViewport().SetInputAsHandled();
 		}
@@ -77,8 +79,8 @@ public partial class Main : Control
 
 	private void HandleDurationInputs()
 	{
-		// Only allow duration adjustments when the timer is not running
-		if (_isRunning)
+		// Only allow duration adjustments when the timer is stopped
+		if (!_isStopped)
 			return;
 
 		if (_timerActionButtonCooldownMs <= 0.0)
@@ -154,9 +156,6 @@ public partial class Main : Control
 
 	private void SetRunningState(bool isRunning)
 	{
-		if (!_isRunning && _durationSeconds <= 0)
-			return;
-
 		_isRunning = isRunning;
 		
 		if (!_isRunning)
@@ -174,7 +173,7 @@ public partial class Main : Control
 			if (_remainingSeconds <= 0.0)
 			{
 				_remainingSeconds = 0.0;
-				_durationSeconds = 0;
+				_isStopped = true;
 				SetRunningState(false);
 				if (_endSound.Stream != null)
 					_endSound.Play();
@@ -196,6 +195,7 @@ public partial class Main : Control
 
 	private void ResetTimer()
 	{
+		_isStopped = true;
 		_remainingSeconds = _durationSeconds;
 		UpdateDisplay();
 	}
@@ -205,7 +205,7 @@ public partial class Main : Control
 		float progress = _durationSeconds > 0 ? (float)(_remainingSeconds / _durationSeconds) : 0.0f;
 		int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
 
-		_wheelsController.Visible = !_isRunning;
+		_wheelsController.Visible = _isStopped;
 
 		_timerCircle.SetProgress(progress);
 		_timerCircle.SetTime(displayedSeconds);
