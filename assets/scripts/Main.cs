@@ -167,18 +167,18 @@ public partial class Main : Control
 
 	private void UpdateTimer(double delta)
 	{
-		if (!_isRunning)
-			return;
-
-		_remainingSeconds -= delta;
-
-		if (_remainingSeconds <= 0.0)
+		if (_isRunning)
 		{
-			_remainingSeconds = 0.0;
-			_durationSeconds = 0;
-			SetRunningState(false);
-			if (_endSound.Stream != null)
-				_endSound.Play();
+			_remainingSeconds -= delta;
+
+			if (_remainingSeconds <= 0.0)
+			{
+				_remainingSeconds = 0.0;
+				_durationSeconds = 0;
+				SetRunningState(false);
+				if (_endSound.Stream != null)
+					_endSound.Play();
+			}
 		}
 
 		UpdateDisplay();
@@ -204,6 +204,8 @@ public partial class Main : Control
 	{
 		float progress = _durationSeconds > 0 ? (float)(_remainingSeconds / _durationSeconds) : 0.0f;
 		int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
+
+		_wheelsController.Visible = !_isRunning;
 
 		_timerCircle.SetProgress(progress);
 		_timerCircle.SetTime(displayedSeconds);
