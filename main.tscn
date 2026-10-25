@@ -12,6 +12,10 @@
 [ext_resource type="Theme" uid="uid://taq6xusrmda4" path="res://assets/theme/text/TimeTheme.tres" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://kwnvd7a45jj1" path="res://assets/icons/ChevronDown.svg" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dee6hvcuju47f" path="res://assets/icons/ChevronUp.svg" id="6_efxa6"]
+[ext_resource type="Texture2D" uid="uid://dt1u4bsj8mk44" path="res://assets/icons/xbutton.png" id="9_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://bik4eonhvprf2" path="res://assets/icons/ybutton.png" id="10_yaehf"]
+[ext_resource type="Texture2D" uid="uid://dgjsrkfiqa5rm" path="res://assets/icons/abutton.png" id="11_074og"]
+[ext_resource type="Texture2D" uid="uid://c5nlw3pgioy3j" path="res://assets/icons/bbutton.png" id="12_cegan"]
 
 [node name="Main" type="Control" unique_id=1479774579]
 texture_filter = 1
@@ -177,6 +181,84 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
 alignment = 1
+
+[node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/TimerLayout" unique_id=1262130550]
+layout_mode = 2
+alignment = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=732815318]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+
+[node name="Line1" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=1709084002]
+layout_mode = 2
+size_flags_horizontal = 8
+columns = 3
+
+[node name="XButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1403629720]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_2cqfq")
+
+[node name="XButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1444737808]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+
+[node name="Line2" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=718892248]
+layout_mode = 2
+columns = 5
+
+[node name="YButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=756824183]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="YButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=417940105]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_yaehf")
+
+[node name="Spacer" type="Control" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=344034928]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="AButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=591006921]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_074og")
+
+[node name="AButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=618768312]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Play"
+
+[node name="Line3" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=1607176421]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 3
+
+[node name="BButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=40576053]
+custom_minimum_size = Vector2(63, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 11
+text = "Reset"
+horizontal_alignment = 2
+
+[node name="BButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=594962563]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_cegan")
 
 [node name="TimerCircle" type="Control" parent="MainLayout/TimerLayout" unique_id=929735440]
 custom_minimum_size = Vector2(250, 250)
