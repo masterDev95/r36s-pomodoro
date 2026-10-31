@@ -18,7 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://dt1u4bsj8mk44" path="res://assets/icons/xbutton.png" id="9_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://bik4eonhvprf2" path="res://assets/icons/ybutton.png" id="10_yaehf"]
 [ext_resource type="Texture2D" uid="uid://dgjsrkfiqa5rm" path="res://assets/icons/abutton.png" id="11_074og"]
+[ext_resource type="Texture2D" uid="uid://j2706mk4q1lf" path="res://assets/icons/r1button.png" id="12_82xsv"]
 [ext_resource type="Texture2D" uid="uid://c5nlw3pgioy3j" path="res://assets/icons/bbutton.png" id="12_cegan"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_getpj"]
+load_path = "res://.godot/imported/l1button.png-aca0ede17b94ae0fc8d15599afd5b951.ctex"
 
 [node name="Main" type="Control" unique_id=1479774579]
 texture_filter = 1
@@ -46,21 +50,21 @@ theme_override_constants/separation = 32
 [node name="Spacer" type="Control" parent="MainLayout/WheelLayout" unique_id=1274833073]
 layout_mode = 2
 
-[node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/WheelLayout" unique_id=931845232]
+[node name="WheelsControlButtons" type="HBoxContainer" parent="MainLayout/WheelLayout" unique_id=931845232]
 layout_mode = 2
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="MainLayout/WheelLayout/TimerControlButtons" unique_id=1039880102]
+[node name="DpadContainer" type="VBoxContainer" parent="MainLayout/WheelLayout/WheelsControlButtons" unique_id=1039880102]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1.15, 1.15)
 theme_override_constants/separation = 2
 
-[node name="Line1" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=473245536]
+[node name="Line1" type="GridContainer" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer" unique_id=473245536]
 layout_mode = 2
 size_flags_horizontal = 8
 columns = 3
 
-[node name="XButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=841064]
+[node name="DpadUpButton" type="TextureRect" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line1" unique_id=841064]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -68,20 +72,20 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(2, 2)
 texture = ExtResource("3_cegan")
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1035593945]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line1" unique_id=1035593945]
 layout_mode = 2
 
-[node name="XButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1626247143]
+[node name="DpadUpLabel" type="Label" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line1" unique_id=1626247143]
 custom_minimum_size = Vector2(57, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Increase"
 
-[node name="Line2" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=1179655523]
+[node name="Line2" type="GridContainer" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer" unique_id=1179655523]
 layout_mode = 2
 columns = 5
 
-[node name="YButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=676293686]
+[node name="DpadLeftLabel" type="Label" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2" unique_id=676293686]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -89,18 +93,18 @@ theme_override_font_sizes/font_size = 11
 text = "Min"
 horizontal_alignment = 2
 
-[node name="YButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=1436358641]
+[node name="DpadLeftButton" type="TextureRect" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2" unique_id=1436358641]
 layout_mode = 2
 size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(2, 2)
 texture = ExtResource("4_82xsv")
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=495689526]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2" unique_id=495689526]
 custom_minimum_size = Vector2(13, 0)
 layout_mode = 2
 
-[node name="AButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=2059176213]
+[node name="DpadRightButton" type="TextureRect" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2" unique_id=2059176213]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -108,19 +112,19 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(2, 2)
 texture = ExtResource("4_82xsv")
 
-[node name="AButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=1366351593]
+[node name="DpadRightLabel" type="Label" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2" unique_id=1366351593]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Sec"
 
-[node name="Line3" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=1853030850]
+[node name="Line3" type="GridContainer" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer" unique_id=1853030850]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 columns = 3
 
-[node name="BButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=972126404]
+[node name="DpadDownLabel" type="Label" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line3" unique_id=972126404]
 custom_minimum_size = Vector2(57, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -128,10 +132,10 @@ theme_override_font_sizes/font_size = 11
 text = "Decrease"
 horizontal_alignment = 2
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=1962908708]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line3" unique_id=1962908708]
 layout_mode = 2
 
-[node name="BButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=1868354859]
+[node name="DpadDownButton" type="TextureRect" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line3" unique_id=1868354859]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -296,69 +300,100 @@ layout_mode = 2
 
 [node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/TimerLayout" unique_id=1262130550]
 layout_mode = 2
-alignment = 2
-
-[node name="ButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=732815318]
-layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1.15, 1.15)
+alignment = 2
 
-[node name="Line1" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=1709084002]
+[node name="LRButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=705471961]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="L1Container" type="HBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer" unique_id=1058246825]
+layout_mode = 2
+
+[node name="ButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer/L1Container" unique_id=448813443]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "-5 sec"
+
+[node name="ButtonTex" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer/L1Container" unique_id=1429883691]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("CompressedTexture2D_getpj")
+
+[node name="R1Container" type="HBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer" unique_id=1667153766]
+layout_mode = 2
+
+[node name="ButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer/R1Container" unique_id=1298177075]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "+5 sec"
+
+[node name="ButtonTex" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer/R1Container" unique_id=1919190012]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("12_82xsv")
+
+[node name="CrossButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=732815318]
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="Line1" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer" unique_id=1709084002]
 layout_mode = 2
 size_flags_horizontal = 8
 columns = 3
 
-[node name="XButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1403629720]
+[node name="XButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line1" unique_id=1403629720]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("9_2cqfq")
 
-[node name="XButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1444737808]
+[node name="XButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line1" unique_id=1444737808]
 custom_minimum_size = Vector2(62, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 
-[node name="Line2" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=718892248]
+[node name="Line2" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer" unique_id=718892248]
 layout_mode = 2
 columns = 5
 
-[node name="YButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=756824183]
+[node name="YButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2" unique_id=756824183]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 11
 horizontal_alignment = 2
 
-[node name="YButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=417940105]
+[node name="YButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2" unique_id=417940105]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("10_yaehf")
 
-[node name="Spacer" type="Control" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=344034928]
+[node name="Spacer" type="Control" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2" unique_id=344034928]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="AButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=591006921]
+[node name="AButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2" unique_id=591006921]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("11_074og")
 
-[node name="AButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=618768312]
+[node name="AButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2" unique_id=618768312]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Play"
 
-[node name="Line3" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=1607176421]
+[node name="Line3" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer" unique_id=1607176421]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 columns = 3
 
-[node name="BButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=40576053]
+[node name="BButtonLabel" type="Label" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line3" unique_id=40576053]
 custom_minimum_size = Vector2(63, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -366,7 +401,7 @@ theme_override_font_sizes/font_size = 11
 text = "Reset"
 horizontal_alignment = 2
 
-[node name="BButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=594962563]
+[node name="BButton" type="TextureRect" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line3" unique_id=594962563]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
