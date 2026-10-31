@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class WheelsContainer : HBoxContainer
 {
@@ -10,9 +9,7 @@ public partial class WheelsContainer : HBoxContainer
 	}
 
 	private const Wheel DefaultWheel = Wheel.Minute;
-	private const int DurationAdjustmentSeconds = 5;
-
-	private Wheel _activeWheel;
+    private Wheel _activeWheel;
 
 	// Minute wheel
 	private Label _minutesTopLabel;

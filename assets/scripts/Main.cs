@@ -25,7 +25,7 @@ public partial class Main : Control
 	{
 		_timerCircle = GetNode<TimerCircle>("MainLayout/TimerLayout/TimerCircle");
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
-		_wheelsController = GetNode<WheelsContainer>("MainLayout/WheelsContainer");
+		_wheelsController = GetNode<WheelsContainer>("MainLayout/WheelLayout/WheelsContainer");
 		_playPauseIcon = GetNode<TextureRect>("MainLayout/TimerLayout/PlayPauseContainer/PlayPauseIcon");
 
 		_remainingSeconds = _durationSeconds;
