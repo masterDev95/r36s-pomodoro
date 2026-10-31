@@ -3,13 +3,16 @@
 [ext_resource type="Theme" uid="uid://dd74tdvwmbvjv" path="res://assets/theme/PomodoroTheme.tres" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://qsjcasu1ndlb" path="res://assets/scripts/Main.cs" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://lm8tk1qxjcgu" path="res://assets/scripts/TimerCircle.cs" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bon4etllq8sf4" path="res://assets/icons/dpadUp.png" id="3_cegan"]
 [ext_resource type="Script" uid="uid://y43tkqvoptcd" path="res://assets/scripts/WheelsContainer.cs" id="3_dg77c"]
 [ext_resource type="AudioStream" uid="uid://dgph6aqspbf4q" path="res://assets/audio/timer_finished.wav" id="3_h2yge"]
 [ext_resource type="Theme" uid="uid://b4gpqtmy5roq2" path="res://assets/theme/text/WheelHeaderTheme.tres" id="3_kek77"]
 [ext_resource type="Theme" uid="uid://cm5ox11ic4cl3" path="res://assets/theme/text/TimeSecondaryTheme.tres" id="4_4c57u"]
 [ext_resource type="StyleBox" uid="uid://c7or01rqxb0pd" path="res://assets/theme/buttons/ButtonNormal.tres" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dihrv246rvhou" path="res://assets/icons/dpadHori.png" id="4_82xsv"]
 [ext_resource type="Texture2D" uid="uid://dw30texidlaug" path="res://assets/icons/play.svg" id="4_lquwl"]
 [ext_resource type="Theme" uid="uid://taq6xusrmda4" path="res://assets/theme/text/TimeTheme.tres" id="5_efxa6"]
+[ext_resource type="Texture2D" uid="uid://cocyaedyja2gr" path="res://assets/icons/dpadDown.png" id="5_getpj"]
 [ext_resource type="Texture2D" uid="uid://kwnvd7a45jj1" path="res://assets/icons/ChevronDown.svg" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dee6hvcuju47f" path="res://assets/icons/ChevronUp.svg" id="6_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dt1u4bsj8mk44" path="res://assets/icons/xbutton.png" id="9_2cqfq"]
@@ -35,152 +38,261 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="WheelsContainer" type="HBoxContainer" parent="MainLayout" unique_id=925197628]
+[node name="WheelLayout" type="VBoxContainer" parent="MainLayout" unique_id=1814471207]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout" unique_id=1274833073]
+layout_mode = 2
+
+[node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/WheelLayout" unique_id=931845232]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MainLayout/WheelLayout/TimerControlButtons" unique_id=1039880102]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.15, 1.15)
+theme_override_constants/separation = 2
+
+[node name="Line1" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=473245536]
+layout_mode = 2
+size_flags_horizontal = 8
+columns = 3
+
+[node name="XButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=841064]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = ExtResource("3_cegan")
+
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1035593945]
+layout_mode = 2
+
+[node name="XButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line1" unique_id=1626247143]
+custom_minimum_size = Vector2(57, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Increase"
+
+[node name="Line2" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=1179655523]
+layout_mode = 2
+columns = 5
+
+[node name="YButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=676293686]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 11
+text = "Min"
+horizontal_alignment = 2
+
+[node name="YButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=1436358641]
+layout_mode = 2
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = ExtResource("4_82xsv")
+
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=495689526]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+
+[node name="AButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=2059176213]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = ExtResource("4_82xsv")
+
+[node name="AButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line2" unique_id=1366351593]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Sec"
+
+[node name="Line3" type="GridContainer" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer" unique_id=1853030850]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 3
+
+[node name="BButtonLabel" type="Label" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=972126404]
+custom_minimum_size = Vector2(57, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 11
+text = "Decrease"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=1962908708]
+layout_mode = 2
+
+[node name="BButton" type="TextureRect" parent="MainLayout/WheelLayout/TimerControlButtons/ButtonsContainer/Line3" unique_id=1868354859]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = ExtResource("5_getpj")
+
+[node name="Spacer3" type="Control" parent="MainLayout/WheelLayout" unique_id=449657627]
+layout_mode = 2
+
+[node name="WheelsContainer" type="HBoxContainer" parent="MainLayout/WheelLayout" unique_id=925197628]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource("3_dg77c")
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer" unique_id=952780631]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=952780631]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HourWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=1084165941]
+[node name="HourWheel" type="VBoxContainer" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=1084165941]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=28338233]
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/HourWheel" unique_id=28338233]
 layout_mode = 2
 theme = ExtResource("3_kek77")
 text = "Heures"
 
-[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=164597552]
+[node name="TopLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/HourWheel" unique_id=164597552]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "99"
 horizontal_alignment = 1
 
-[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=953573474]
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/HourWheel" unique_id=953573474]
 layout_mode = 2
 theme = ExtResource("5_efxa6")
 text = "00"
 horizontal_alignment = 1
 
-[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/HourWheel" unique_id=763727977]
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/HourWheel" unique_id=763727977]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "01"
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer" unique_id=278059493]
+[node name="Spacer2" type="Control" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=278059493]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MinuteWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=139727600]
+[node name="MinuteWheel" type="VBoxContainer" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=139727600]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=2043690901]
+[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=2043690901]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("6_efxa6")
 
-[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=830440832]
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=830440832]
 layout_mode = 2
 theme = ExtResource("3_kek77")
 text = "Min"
 horizontal_alignment = 1
 
-[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=33362615]
+[node name="TopLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=33362615]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "29"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=746797711]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=746797711]
 layout_mode = 2
 
-[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=1112297590]
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=1112297590]
 layout_mode = 2
 theme = ExtResource("5_efxa6")
 text = "30"
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=2117404774]
+[node name="Spacer2" type="Control" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=2117404774]
 layout_mode = 2
 
-[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=447337497]
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=447337497]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "31"
 horizontal_alignment = 1
 
-[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelsContainer/MinuteWheel" unique_id=296289223]
+[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelLayout/WheelsContainer/MinuteWheel" unique_id=296289223]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("6_4c57u")
 
-[node name="Spacer3" type="Control" parent="MainLayout/WheelsContainer" unique_id=1513136000]
+[node name="Spacer3" type="Control" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=1513136000]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SecondWheel" type="VBoxContainer" parent="MainLayout/WheelsContainer" unique_id=740668704]
+[node name="SecondWheel" type="VBoxContainer" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=740668704]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1961907374]
+[node name="ChevronUp" type="TextureRect" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1961907374]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("6_efxa6")
 
-[node name="HeaderLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1764793202]
+[node name="HeaderLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1764793202]
 layout_mode = 2
 theme = ExtResource("3_kek77")
 text = "Sec"
 horizontal_alignment = 1
 
-[node name="TopLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1553433472]
+[node name="TopLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1553433472]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "59"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=772254977]
+[node name="Spacer" type="Control" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=772254977]
 layout_mode = 2
 
-[node name="CenterLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1727609416]
+[node name="CenterLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1727609416]
 layout_mode = 2
 theme = ExtResource("5_efxa6")
 text = "00"
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1719370854]
+[node name="Spacer2" type="Control" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1719370854]
 layout_mode = 2
 
-[node name="BottomLabel" type="Label" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=251654704]
+[node name="BottomLabel" type="Label" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=251654704]
 layout_mode = 2
 theme = ExtResource("4_4c57u")
 text = "01"
 horizontal_alignment = 1
 
-[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelsContainer/SecondWheel" unique_id=1352163068]
+[node name="ChevronDown" type="TextureRect" parent="MainLayout/WheelLayout/WheelsContainer/SecondWheel" unique_id=1352163068]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("6_4c57u")
 
-[node name="Spacer4" type="Control" parent="MainLayout/WheelsContainer" unique_id=787765960]
+[node name="Spacer4" type="Control" parent="MainLayout/WheelLayout/WheelsContainer" unique_id=787765960]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="MainLayout/WheelLayout" unique_id=409487351]
+layout_mode = 2
 
 [node name="TimerLayout" type="VBoxContainer" parent="MainLayout" unique_id=1718844650]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
-alignment = 1
+
+[node name="Spacer" type="Control" parent="MainLayout/TimerLayout" unique_id=948429238]
+layout_mode = 2
 
 [node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/TimerLayout" unique_id=1262130550]
 layout_mode = 2
@@ -189,7 +301,7 @@ alignment = 2
 [node name="ButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=732815318]
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_scale = Vector2(1.1, 1.1)
+offset_transform_scale = Vector2(1.15, 1.15)
 
 [node name="Line1" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/ButtonsContainer" unique_id=1709084002]
 layout_mode = 2
@@ -291,6 +403,9 @@ size_flags_vertical = 4
 texture = ExtResource("4_lquwl")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="MainLayout/TimerLayout" unique_id=408215614]
+layout_mode = 2
 
 [node name="EndSound" type="AudioStreamPlayer" parent="." unique_id=1591177889]
 stream = ExtResource("3_h2yge")
