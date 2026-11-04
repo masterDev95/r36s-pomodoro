@@ -13,7 +13,6 @@ config_version=5
 config/name="R36S Pomodoro"
 run/main_scene="uid://cikf66d5ul6ra"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
-boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [display]
