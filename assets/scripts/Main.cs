@@ -20,6 +20,15 @@ public partial class Main : Control
 	private AudioStreamPlayer _endSound;
 	private TextureRect _playPauseIcon;
 	private WheelsContainer _wheelsController;
+	private VBoxContainer _lrButtonsContainer;
+	private Label _dpadUpLabel;
+	private Label _dpadLeftLabel;
+	private Label _dpadRightLabel;
+	private Label _dpadDownLabel;
+	private Label _aButtonLabel;
+	private Label _bButtonLabel;
+	private Label _xButtonLabel;
+	private Label _yButtonLabel;
 
 	public override void _Ready()
 	{
@@ -27,6 +36,15 @@ public partial class Main : Control
 		_endSound = GetNode<AudioStreamPlayer>("EndSound");
 		_wheelsController = GetNode<WheelsContainer>("MainLayout/WheelLayout/WheelsContainer");
 		_playPauseIcon = GetNode<TextureRect>("MainLayout/TimerLayout/PlayPauseContainer/PlayPauseIcon");
+		_lrButtonsContainer = GetNode<VBoxContainer>("MainLayout/TimerLayout/TimerControlButtons/LRButtonsContainer");
+		_dpadUpLabel = GetNode<Label>("MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line1/DpadUpLabel");
+		_dpadLeftLabel = GetNode<Label>("MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2/DpadLeftLabel");
+		_dpadRightLabel = GetNode<Label>("MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line2/DpadRightLabel");
+		_dpadDownLabel = GetNode<Label>("MainLayout/WheelLayout/WheelsControlButtons/DpadContainer/Line3/DpadDownLabel");
+		_xButtonLabel = GetNode<Label>("MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line1/XButtonLabel");
+		_aButtonLabel = GetNode<Label>("MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2/AButtonLabel");
+		_yButtonLabel = GetNode<Label>("MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line2/YButtonLabel");
+		_bButtonLabel = GetNode<Label>("MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer/Line3/BButtonLabel");
 
 		_remainingSeconds = _durationSeconds;
 
@@ -205,11 +223,50 @@ public partial class Main : Control
 		float progress = _durationSeconds > 0 ? (float)(_remainingSeconds / _durationSeconds) : 0.0f;
 		int displayedSeconds = (int)Mathf.Ceil(_remainingSeconds);
 
-		_wheelsController.Visible = _isStopped;
+		// Show or hide the wheels layout based on whether the timer is stopped
+		_wheelsController.GetParent<VBoxContainer>().Visible = _isStopped;
+
+		// Update the D-pad labels based on the active wheel
+		if (_wheelsController.ActiveWheel == Wheel.Minute)
+		{
+			_dpadLeftLabel.Text = "";
+			_dpadRightLabel.Text = "Sec";
+			_dpadUpLabel.Text = $"+{DurationAdjustmentSeconds} Min";
+			_dpadDownLabel.Text = $"-{DurationAdjustmentSeconds} Min";
+		}
+		else
+		{
+			_dpadLeftLabel.Text = "Min";
+			_dpadRightLabel.Text = "";
+			_dpadUpLabel.Text = $"+{DurationAdjustmentSeconds} Sec";
+			_dpadDownLabel.Text = $"-{DurationAdjustmentSeconds} Sec";
+		}
+
+		if (_isRunning)
+		{
+			_aButtonLabel.Text = "Pause";
+			_bButtonLabel.Text = "";
+		}
+		else
+		{
+			_aButtonLabel.Text = "Start";
+			_bButtonLabel.Text = "Reset";
+		}
+
+		if (_isStopped)
+		{
+			_lrButtonsContainer.Visible = true;
+			_aButtonLabel.Text = "Start";
+			_bButtonLabel.Text = "";
+		}
+		else
+		{
+			_lrButtonsContainer.Visible = false;
+		}
 
 		_timerCircle.SetProgress(progress);
 		_timerCircle.SetTime(displayedSeconds);
-		_wheelsController.UpdateWheels((int)Mathf.Floor(_durationSeconds / 60), (int)(_durationSeconds % 60));
+		_wheelsController.UpdateWheels((int)Mathf.Floor(_durationSeconds / 60), _durationSeconds % 60);
 	}
 
 }
