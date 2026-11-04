@@ -55,8 +55,6 @@ layout_mode = 2
 
 [node name="DpadContainer" type="VBoxContainer" parent="MainLayout/WheelLayout/WheelsControlButtons" unique_id=1039880102]
 layout_mode = 2
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.15, 1.15)
 theme_override_constants/separation = 2
 
 [node name="Line1" type="GridContainer" parent="MainLayout/WheelLayout/WheelsControlButtons/DpadContainer" unique_id=473245536]
@@ -300,8 +298,6 @@ layout_mode = 2
 
 [node name="TimerControlButtons" type="HBoxContainer" parent="MainLayout/TimerLayout" unique_id=1262130550]
 layout_mode = 2
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.15, 1.15)
 alignment = 2
 
 [node name="LRButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=705471961]
@@ -336,7 +332,6 @@ texture = ExtResource("12_82xsv")
 
 [node name="CrossButtonsContainer" type="VBoxContainer" parent="MainLayout/TimerLayout/TimerControlButtons" unique_id=732815318]
 layout_mode = 2
-offset_transform_enabled = true
 
 [node name="Line1" type="GridContainer" parent="MainLayout/TimerLayout/TimerControlButtons/CrossButtonsContainer" unique_id=1709084002]
 layout_mode = 2
